@@ -25,6 +25,10 @@
                     <a class="btn btn-secondary" href="<?= base_url() ?>">Reset</a>
 
                 </form>
+                <form action="<?= base_url() . "/download_csv" ?>" method="post">
+                    <button type="submit" class="btn btn-primary">Download CSV</button>
+
+                </form>
             </div>
         </div>
         <table class="table" id="table-buku">
