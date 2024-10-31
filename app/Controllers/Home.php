@@ -16,18 +16,20 @@ class Home extends BaseController
 
     public function download_csv()
     {
-        header('Content-Type: text/csv');
-        header('Content-Disposition: attachment; filename="sample.csv"');
+        // echo("sdjsdfs");
+        // header('Content-Type: text/csv');
+        // header('Content-Disposition: attachment; filename="sample.csv"');
         $data = [];
         $data = array(
-            $this->model->select_all()->getResult()
+            'buku' => $this->model->select_all()->getResult()
         );
-        $fp = fopen('php://output', 'wb');
-        foreach ( $data as $line ) {
-            $val = explode(",", $line);
-            fputcsv($fp, $val);
-        }
-        fclose($fp);
+        // $fp = fopen('sample.csv', 'wb');
+        // foreach ( $data as $line ) {
+        //     $val = explode(",", $line);
+        //     fputcsv($fp, $val);
+        // }
+        // fclose($fp);
+        return view('download_csv', $data);
     }
 
     public function index()
