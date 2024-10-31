@@ -14,6 +14,22 @@ class Home extends BaseController
         $this->modelPenerbit = model('PenerbitModels');
     }
 
+    public function download_csv()
+    {
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="sample.csv"');
+        $data = [];
+        $data = array(
+            $this->model->select_all()->getResult()
+        );
+        $fp = fopen('php://output', 'wb');
+        foreach ( $data as $line ) {
+            $val = explode(",", $line);
+            fputcsv($fp, $val);
+        }
+        fclose($fp);
+    }
+
     public function index()
     {
         $data = [];
